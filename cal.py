@@ -36,3 +36,25 @@ def safe_eval(expr):
     for func in trig_funcs:
         if func in expr and use_degrees:
             expr = expr.replace(f"{func}(", f"math.{func}(math.radians(")
+        try:
+result = eval(expr, {"_builtins_": None, "math": math})
+        last_result = result
+        history.append(f"{expr} = {result}")
+        return result
+    except ZeroDivisionError:
+        messagebox.showerror("Error", "Division by zero!")
+        return None
+    except Exception:
+        messagebox.showerror("Error", "Invalid expression!")
+        return None
+    # -----------------------------
+# Memory Functions
+# -----------------------------
+def memory_add():
+    global memory
+    try:
+        val = float(entry.get())
+        memory += val
+        messagebox.showinfo("Memory", f"Added {val} to memory.\nMemory: {memory}")
+    except:
+        messagebox.showerror("Error", "Enter a valid number to add to memory.")
