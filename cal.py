@@ -31,3 +31,8 @@ def safe_eval(expr):
             num = expr[i] + num
             i -=1
         expr = expr[:i+1] + f"math.factorial({num})" + expr[index+1:]
+        #Replace trig functions for degrees/radians
+    trig_funcs = ['sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'sinh', 'cosh', 'tanh']
+    for func in trig_funcs:
+        if func in expr and use_degrees:
+            expr = expr.replace(f"{func}(", f"math.{func}(math.radians(")
