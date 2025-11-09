@@ -58,3 +58,11 @@ def memory_add():
         messagebox.showinfo("Memory", f"Added {val} to memory.\nMemory: {memory}")
     except:
         messagebox.showerror("Error", "Enter a valid number to add to memory.")
+        def memory_subtract():
+    global memory
+    try:
+        val = float(entry.get())
+        memory -= val
+        messagebox.showinfo("Memory", f"Subtracted {val} from memory.\nMemory: {memory}")
+    except:
+        messagebox.showerror("Error", "Enter a valid number to subtract from memory.")
